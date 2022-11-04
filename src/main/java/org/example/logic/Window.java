@@ -1,8 +1,9 @@
-package org.example.Window;
+package org.example.logic;
 
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.GL;
 
+import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
@@ -29,6 +30,11 @@ public class Window {
 
         init();
         loop();
+
+        glfwFreeCallbacks(glfwWindow);
+        glfwDestroyWindow(glfwWindow);
+        glfwTerminate();
+        glfwSetErrorCallback(null).free();
     }
 
     public void init() {
@@ -51,18 +57,32 @@ public class Window {
             throw new IllegalStateException("Failed to create Window");
         }
 
+        glfwSetKeyCallback(glfwWindow, KeyListener::keyCallback);
+
         glfwMakeContextCurrent(glfwWindow);
         glfwSwapInterval(1);
 
         glfwShowWindow(glfwWindow);
 
         GL.createCapabilities();
-
-
-
     }
 
     public void loop() {
+        float beginTime = Time.getTime();
+        float endTime = Time.getTime();
 
+        while(!glfwWindowShouldClose(glfwWindow)) {
+
+            glfwPollEvents();
+
+            glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+            glClear(GL_COLOR_BUFFER_BIT);
+
+            glfwSwapBuffers(glfwWindow);
+
+            endTime = Time.getTime();
+            float dt = endTime - beginTime;
+            beginTime = endTime;
+        }
     }
 }
