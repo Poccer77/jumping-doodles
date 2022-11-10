@@ -1,10 +1,7 @@
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 
-import GameObjects.Level;
 import org.lwjgl.opengl.GL;
-
-import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Main {

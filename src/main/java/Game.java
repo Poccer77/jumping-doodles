@@ -1,10 +1,4 @@
-
-import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.*;
-
-import GameObjects.Level;
 import GameObjects.Platform;
-import org.lwjgl.opengl.GL;
 
 import java.util.ArrayList;
 
