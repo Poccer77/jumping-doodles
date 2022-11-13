@@ -29,11 +29,11 @@ public class Platform {
         this.y = y;
     }
 
-    public Platform() {
+    public Platform(Float x, Float y, Float width) {
 
-        width = ThreadLocalRandom.current().nextFloat(0.2f, 0.3f);
-        x = ThreadLocalRandom.current().nextFloat(-1f, 1f - width);
-        y = 2f;
+        this.width = (width == null) ? ThreadLocalRandom.current().nextFloat(0.2f, 0.3f) : width;
+        this.x = (x == null) ? ThreadLocalRandom.current().nextFloat(-1f, 1f - this.width) : x;
+        this.y = (y == null) ? 2f : y;
 
         draw();
     }
