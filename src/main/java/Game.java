@@ -1,4 +1,5 @@
 import GameObjects.Platform;
+import GameObjects.Player;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -10,6 +11,7 @@ public class Game {
 
     private long window;
     private ArrayList<Platform> platforms;
+    private Player player;
     public float gap = 0.5f;
     public final float SPEED;
     private float distanceToNextPlatform = 0;
@@ -17,10 +19,11 @@ public class Game {
     public Game(long window, float SPEED) {
         this.window = window;
         this.SPEED = SPEED;
-        platforms = init();
+        this.init();
     }
 
-    private ArrayList<Platform> init() {
+    private void init() {
+
         ArrayList<Platform> returnPlatforms = new ArrayList<>();
 
         returnPlatforms.add(new Platform(-0.1f, -0.9f, 0.2f));
@@ -28,8 +31,8 @@ public class Game {
         for (float f = -0.9f + gap; f < 2f; f += gap) {
             returnPlatforms.add(new Platform(null, f, null));
         }
-
-        return returnPlatforms;
+        player = new Player(-0.05f, -0.8f, 0.1f, 0.1f);
+        platforms = returnPlatforms;
     }
 
     public void loop() {
@@ -38,6 +41,8 @@ public class Game {
     }
 
     public void scroll() {
+
+        player.PlayerMovement(0, 0);
         for (Platform platform : platforms) {
             platform.setY(platform.getY() - SPEED);
             platform.draw();

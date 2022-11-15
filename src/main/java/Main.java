@@ -42,7 +42,7 @@ public class Main {
 
         GL.createCapabilities();
 
-        glfwSwapInterval(0);
+        glfwSwapInterval(1);
     }
 
     private void loop() {
@@ -52,7 +52,7 @@ public class Main {
         // creates the GLCapabilities instance and makes the OpenGL
         // bindings available for use.
 
-        Game game = new Game(window, 0.001f);
+        Game game = new Game(window, 0f);
 
         // Run the rendering loop until the user has attempted to close
         // the window or has pressed the ESCAPE key.
