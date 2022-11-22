@@ -63,7 +63,7 @@ public class Main {
             glfwPollEvents();
             glClear(GL_COLOR_BUFFER_BIT);
 
-            game.scroll();
+            game.loop();
 
             glfwSwapBuffers(window);
         }

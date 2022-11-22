@@ -26,10 +26,10 @@ public class Game {
 
         ArrayList<Platform> returnPlatforms = new ArrayList<>();
 
-        returnPlatforms.add(new Platform(-0.1f, -0.9f, 0.2f));
+        returnPlatforms.add(new Platform(-0.1f, -0.9f, 0.2f, 0.1f));
 
         for (float f = -0.9f + gap; f < 2f; f += gap) {
-            returnPlatforms.add(new Platform(null, f, null));
+            returnPlatforms.add(new Platform(null, f, null, null));
         }
         player = new Player(-0.05f, -0.8f, 0.1f, 0.1f);
         platforms = returnPlatforms;
@@ -51,7 +51,7 @@ public class Game {
         distanceToNextPlatform += SPEED;
 
         if (distanceToNextPlatform >= gap) {
-            platforms.add(new Platform(null, null, null));
+            platforms.add(new Platform(null, null, null, null));
             distanceToNextPlatform = 0;
             System.out.println("+1");
         }
@@ -60,6 +60,13 @@ public class Game {
             platforms.remove(0);
             System.out.println("-1");
         }
+    }
+
+    public boolean checkCollision() {
+        for (Platform platform : platforms) {
+
+        }
+        return true;
     }
 }
 
