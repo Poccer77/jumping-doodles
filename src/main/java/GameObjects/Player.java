@@ -4,7 +4,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class Player {
 
-    private float x, y, width, height;
+    private float x, y, width, height, momentum;
 
     public Player (float x, float y, float width, float height) {
         this.x = x;
@@ -21,10 +21,14 @@ public class Player {
         glVertex2f(x + width + XOffset, y + YOffset);
         glVertex2f(x + XOffset, y + YOffset);
         glEnd();
+
+        x += XOffset;
+        y += YOffset;
     }
 
-    public void PlayerMovement(float sidewaysMotion, float upwardImpulse) {
-        draw(sidewaysMotion, upwardImpulse);
+    public void playerMovement() {
+        draw(0, momentum);
+        momentum = momentum - 0.001f;
     }
 
     public float getX() {
@@ -50,4 +54,8 @@ public class Player {
     public float getHeight() {
         return height;
     }
+
+    public float getMomentum() {return momentum;}
+
+    public void setMomentum(float momentum) {this.momentum = momentum;}
 }

@@ -4,23 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="02d74ff3-4588-414c-987d-fc23ae76702e" name="Changes" comment="Progression 3&#10;&#10;- level is now filled on startup&#10;- added Player class">
-      <change afterPath="$PROJECT_DIR$/src/main/java/GameObjects/Object.java" afterDir="false" />
+    <list default="true" id="02d74ff3-4588-414c-987d-fc23ae76702e" name="Changes" comment="Progression 4&#10;&#10;- In case I did anything I forgot about">
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Game.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GameObjects/Platform.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_11_2022_14_33_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_11_2022_14_33__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GameObjects/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameObjects/Platform.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GameObjects/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameObjects/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,6 +143,8 @@
       <workItem from="1668196203508" duration="8114000" />
       <workItem from="1668345778425" duration="801000" />
       <workItem from="1668538830684" duration="5314000" />
+      <workItem from="1669129695672" duration="772000" />
+      <workItem from="1669201653048" duration="1787000" />
     </task>
     <task id="LOCAL-00001" summary="Orientation&#10;&#10;-switched to a more up-to-date tutorial for lwjgl setup">
       <created>1667581843159</created>
@@ -168,7 +167,21 @@
       <option name="project" value="LOCAL" />
       <updated>1668347028772</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Progression 4&#10;&#10;- In case I did anything I forgot about">
+      <created>1669126985103</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1669126985103</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Progression 4&#10;&#10;- In case I did anything I forgot about">
+      <created>1669127002320</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1669127002320</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,6 +202,7 @@
     <MESSAGE value="Orientation&#10;&#10;-switched to a more up-to-date tutorial for lwjgl setup" />
     <MESSAGE value="Progression 1&#10;&#10;-Implemented utils regarding the window (I don't yet know what I'm doing)" />
     <MESSAGE value="Progression 3&#10;&#10;- level is now filled on startup&#10;- added Player class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Progression 3&#10;&#10;- level is now filled on startup&#10;- added Player class" />
+    <MESSAGE value="Progression 4&#10;&#10;- In case I did anything I forgot about" />
+    <option name="LAST_COMMIT_MESSAGE" value="Progression 4&#10;&#10;- In case I did anything I forgot about" />
   </component>
 </project>

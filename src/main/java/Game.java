@@ -12,6 +12,7 @@ public class Game {
     private long window;
     private ArrayList<Platform> platforms;
     private Player player;
+    private float jumpStrength;
     public float gap = 0.5f;
     public final float SPEED;
     private float distanceToNextPlatform = 0;
@@ -31,18 +32,20 @@ public class Game {
         for (float f = -0.9f + gap; f < 2f; f += gap) {
             returnPlatforms.add(new Platform(null, f, null, null));
         }
-        player = new Player(-0.05f, -0.8f, 0.1f, 0.1f);
+        player = new Player(-0.05f, -0.8f, 0.1f, 0.2f);
         platforms = returnPlatforms;
+        jumpStrength = 0.05f;
     }
 
     public void loop() {
 
         this.scroll();
+        player.playerMovement();
+        checkCollision();
     }
 
     public void scroll() {
 
-        player.PlayerMovement(0, 0);
         for (Platform platform : platforms) {
             platform.setY(platform.getY() - SPEED);
             platform.draw();
@@ -62,11 +65,21 @@ public class Game {
         }
     }
 
-    public boolean checkCollision() {
-        for (Platform platform : platforms) {
+    public float checkCollision() {
 
+        float momentum = 0f;
+
+        for (Platform platform : platforms) {
+            if (platform.getX() < player.getX() + player.getWidth() &&
+                player.getX() < platform.getX() + platform.getWidth() &&
+                player.getY() <= platform.getY() + platform.getHeight() &&
+                platform.getY() <= player.getY() &&
+                player.getMomentum() <= 0) {
+
+                player.setMomentum(jumpStrength);
+            };
         }
-        return true;
+        return 0f;
     }
 }
 
