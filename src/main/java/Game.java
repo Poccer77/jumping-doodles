@@ -13,12 +13,12 @@ public class Game {
     private float jumpStrength;
     private float sidewaysMotion;
     public float gap = 0.5f;
-    public final float SPEED;
+    public float speed;
     private float distanceToNextPlatform = 0;
 
-    public Game(long window, float SPEED) {
+    public Game(long window, float speed) {
         this.window = window;
-        this.SPEED = SPEED;
+        this.speed = speed;
         this.init();
     }
 
@@ -45,16 +45,20 @@ public class Game {
         this.scroll();
         player.playerMovement();
         checkCollision();
+        if (endGame()) {
+            speed = 0f;;
+        }
+
     }
 
     public void scroll() {
 
         for (Platform platform : platforms) {
-            platform.setY(platform.getY() - SPEED);
+            platform.setY(platform.getY() - speed);
             platform.draw();
         }
 
-        distanceToNextPlatform += SPEED;
+        distanceToNextPlatform += speed;
 
         if (distanceToNextPlatform >= gap) {
             platforms.add(new Platform(null, null, null, 0.05f));
@@ -82,6 +86,21 @@ public class Game {
                 sidewaysMotion = 0f;
             }
         }
+
+        if (player.getX() + player.getWidth() <= -1.01f) {
+            player.setX(1.0f);
+        }
+
+        if (player.getX() >= 1.01f) {
+            player.setX(-1.0f);
+        }
+    }
+
+    public boolean endGame() {
+        if (player.getY() + player.getHeight() <= -1.1f) {
+            return true;
+        }
+        return false;
     }
 }
 
