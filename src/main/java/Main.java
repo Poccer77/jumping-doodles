@@ -31,7 +31,7 @@ public class Main {
 
         // Create the window
         window = glfwCreateWindow(width, height, "Hello World!", 0, 0);
-        if ( window == 0)
+        if (window == 0)
             throw new RuntimeException("Failed to create the GLFW window");
 
 
@@ -52,7 +52,7 @@ public class Main {
         // creates the GLCapabilities instance and makes the OpenGL
         // bindings available for use.
 
-        Game game = new Game(window, 0f);
+        Game game = new Game(window, 0.001f);
 
         // Run the rendering loop until the user has attempted to close
         // the window or has pressed the ESCAPE key.
@@ -63,7 +63,9 @@ public class Main {
             glfwPollEvents();
             glClear(GL_COLOR_BUFFER_BIT);
 
-            game.scroll();
+
+
+            game.loop();
 
             glfwSwapBuffers(window);
         }

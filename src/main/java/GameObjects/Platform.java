@@ -9,10 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Platform {
 
-    private float x;
-    private float y;
-    private float width;
-
+    private float x, y, width, height;
     public float getX() {
         return x;
     }
@@ -25,13 +22,16 @@ public class Platform {
         return width;
     }
 
+    public float getHeight() {return height;}
+
     public void setY(float y) {
         this.y = y;
     }
 
-    public Platform(Float x, Float y, Float width) {
+    public Platform(Float x, Float y, Float width, Float height) {
 
-        this.width = (width == null) ? ThreadLocalRandom.current().nextFloat(0.2f, 0.3f) : width;
+        this.width = (width == null) ? ThreadLocalRandom.current().nextFloat(0.1f, 0.2f) : width;
+        this.height = (height == null) ? 0.1f : height;
         this.x = (x == null) ? ThreadLocalRandom.current().nextFloat(-1f, 1f - this.width) : x;
         this.y = (y == null) ? 2f : y;
 
@@ -40,8 +40,8 @@ public class Platform {
 
     public void draw() {
         glBegin(GL_QUADS);
-        glVertex2f(x, y + 0.1f);
-        glVertex2f(x + width, y + 0.1f);
+        glVertex2f(x, y + height);
+        glVertex2f(x + width, y + height);
         glVertex2f(x + width, y);
         glVertex2f(x, y);
         glEnd();
