@@ -11,7 +11,7 @@ public class Main {
     private int height = 700;
     private float x;
 
-    public void run() {
+    public void run() throws InterruptedException {
         init();
         loop();
 
@@ -45,7 +45,7 @@ public class Main {
         glfwSwapInterval(1);
     }
 
-    private void loop() {
+    private void loop() throws InterruptedException {
         // This line is critical for LWJGL's interoperation with GLFW's
         // OpenGL context, or any context that is managed externally.
         // LWJGL detects the context that is current in the current thread,
@@ -63,15 +63,14 @@ public class Main {
             glfwPollEvents();
             glClear(GL_COLOR_BUFFER_BIT);
 
-
-
             game.loop();
 
             glfwSwapBuffers(window);
+            Thread.sleep(10);
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         new Main().run();
     }
 }

@@ -30,7 +30,7 @@ public class Platform {
 
     public Platform(Float x, Float y, Float width, Float height) {
 
-        this.width = (width == null) ? ThreadLocalRandom.current().nextFloat(0.1f, 0.2f) : width;
+        this.width = (width == null) ? ThreadLocalRandom.current().nextFloat(0.2f, 0.3f) : width;
         this.height = (height == null) ? 0.1f : height;
         this.x = (x == null) ? ThreadLocalRandom.current().nextFloat(-1f, 1f - this.width) : x;
         this.y = (y == null) ? 2f : y;
