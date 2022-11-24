@@ -6,11 +6,11 @@ public class Player {
 
     private float x, y, width, height, upwardsMomentum, sidewaysMomentum;
 
-    public Player (float x, float y, float width, float height) {
+    public Player (float x, float y, float dimension) {
         this.x = x;
         this.y = y;
-        this.width = width;
-        this.height = height;
+        this.width = dimension;
+        this.height = dimension * 2;
         draw(0, 0);
     }
 
@@ -26,8 +26,9 @@ public class Player {
         y += YOffset;
     }
 
-    public void playerMovement() {
-        draw(sidewaysMomentum, upwardsMomentum);
+    public void playerMovement(Float sidewaysMomentumOverwrite, Float upwardsMomentumOverwrite) {
+        draw((sidewaysMomentumOverwrite == null) ? sidewaysMomentum : sidewaysMomentumOverwrite,
+             (upwardsMomentumOverwrite == null) ? upwardsMomentum : upwardsMomentumOverwrite);
         upwardsMomentum = upwardsMomentum - 0.001f;
     }
 

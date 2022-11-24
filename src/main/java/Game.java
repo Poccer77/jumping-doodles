@@ -31,9 +31,9 @@ public class Game {
         for (float f = -0.9f + gap; f < 2f; f += gap) {
             returnPlatforms.add(new Platform(null, f, null, 0.05f));
         }
-        player = new Player(-0.025f, -0.8f, 0.05f, 0.1f);
+        player = new Player(-0.025f, -0.8f, 0.05f);
         platforms = returnPlatforms;
-        jumpStrength = gap / 12.5f;
+        jumpStrength = gap / 10f;
     }
 
     public void loop() {
@@ -43,32 +43,36 @@ public class Game {
         if (stateA == GLFW_PRESS) sidewaysMotion -= 0.0005f;
         if (stateD == GLFW_PRESS) sidewaysMotion += 0.0005f;
         this.scroll();
-        player.playerMovement();
+        player.playerMovement(null, null);
         checkCollision();
         if (endGame()) {
-            speed = 0f;;
+            speed = 0f;
         }
 
     }
 
     public void scroll() {
 
+        float currentSpeed = 0f;
+
+        if (player.getY() > 0.5f && player.getUpwardsMomentum() >= 0) {
+            currentSpeed = Math.max(player.getUpwardsMomentum(), 0);
+        }
+
         for (Platform platform : platforms) {
-            platform.setY(platform.getY() - speed);
+            platform.setY(platform.getY() - currentSpeed);
             platform.draw();
         }
 
-        distanceToNextPlatform += speed;
+        distanceToNextPlatform += currentSpeed;
 
         if (distanceToNextPlatform >= gap) {
             platforms.add(new Platform(null, null, null, 0.05f));
             distanceToNextPlatform = 0;
-            System.out.println("+1");
         }
 
         if (platforms.get(0).getY() < -1.1f) {
             platforms.remove(0);
-            System.out.println("-1");
         }
     }
 
@@ -76,14 +80,14 @@ public class Game {
 
         for (Platform platform : platforms) {
             if (platform.getX() < player.getX() + player.getWidth() &&
-                    player.getX() < platform.getX() + platform.getWidth() &&
-                    player.getY() <= platform.getY() + platform.getHeight() &&
-                    platform.getY() <= player.getY() &&
-                    player.getUpwardsMomentum() <= 0) {
+                player.getX() < platform.getX() + platform.getWidth() &&
+                player.getY() <= platform.getY() + platform.getHeight() &&
+                platform.getY() <= player.getY() &&
+                player.getUpwardsMomentum() <= 0) {
 
-                player.setUpwardsMomentum(jumpStrength);
-                player.setSidewaysMomentum(sidewaysMotion);
-                sidewaysMotion = 0f;
+                    player.setUpwardsMomentum(jumpStrength);
+                    player.setSidewaysMomentum(sidewaysMotion);
+                    sidewaysMotion = 0f;
             }
         }
 
