@@ -42,8 +42,13 @@ public class Game {
         int stateD = glfwGetKey(window, GLFW_KEY_D);
         if (stateA == GLFW_PRESS) sidewaysMotion -= 0.0005f;
         if (stateD == GLFW_PRESS) sidewaysMotion += 0.0005f;
-        this.scroll();
-        player.playerMovement(null, null);
+        if (player.getY() >= 0.5f && player.getUpwardsMomentum() >= 0) {
+            this.scroll(player.getUpwardsMomentum());
+            player.playerMovement(null, 0f);
+        } else {
+            this.scroll(speed);
+            player.playerMovement(null, null);
+        }
         checkCollision();
         if (endGame()) {
             speed = 0f;
@@ -51,20 +56,14 @@ public class Game {
 
     }
 
-    public void scroll() {
-
-        float currentSpeed = 0f;
-
-        if (player.getY() > 0.5f && player.getUpwardsMomentum() >= 0) {
-            currentSpeed = Math.max(player.getUpwardsMomentum(), 0);
-        }
+    public void scroll(float speed) {
 
         for (Platform platform : platforms) {
-            platform.setY(platform.getY() - currentSpeed);
+            platform.setY(platform.getY() - speed);
             platform.draw();
         }
 
-        distanceToNextPlatform += currentSpeed;
+        distanceToNextPlatform += speed;
 
         if (distanceToNextPlatform >= gap) {
             platforms.add(new Platform(null, null, null, 0.05f));
