@@ -95,7 +95,7 @@ public class Game {
         }
 
         if (player.getX() >= 1.01f) {
-            player.setX(-1.0f);
+            player.setX(-1.0f - player.getWidth());
         }
     }
 

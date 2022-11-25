@@ -64,7 +64,10 @@ public class Main {
             glClear(GL_COLOR_BUFFER_BIT);
 
             game.loop();
-
+            int reset = glfwGetKey(window, GLFW_KEY_R);
+            if (reset == GLFW_PRESS) game = new Game(window, 0.001f);
+            int close = glfwGetKey(window, GLFW_KEY_ESCAPE);
+            if (close == GLFW_PRESS) break;
             glfwSwapBuffers(window);
             Thread.sleep(10);
         }
