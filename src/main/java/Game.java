@@ -11,9 +11,9 @@ public class Game {
     private ArrayList<Platform> platforms;
     private Player player;
     private float jumpStrength;
-    private float sidewaysMotion;
     public float gap = 0.5f;
     public float speed;
+    public float score = 0;
     private float distanceToNextPlatform = 0;
 
     public Game(long window, float speed) {
@@ -40,20 +40,25 @@ public class Game {
 
         int stateA = glfwGetKey(window, GLFW_KEY_A);
         int stateD = glfwGetKey(window, GLFW_KEY_D);
-        if (stateA == GLFW_PRESS) sidewaysMotion -= 0.0005f;
-        if (stateD == GLFW_PRESS) sidewaysMotion += 0.0005f;
+        if (stateA == GLFW_PRESS) {
+            player.setSidewaysAccu(player.getSidewaysAccu() - 0.0005f);
+        }
+        if (stateD == GLFW_PRESS) {
+            player.setSidewaysAccu(player.getSidewaysAccu() + 0.0005f);
+        }
         if (player.getY() >= 0.5f && player.getUpwardsMomentum() >= 0) {
             this.scroll(player.getUpwardsMomentum());
+            score += player.getUpwardsMomentum();
             player.playerMovement(null, 0f);
         } else {
             this.scroll(speed);
+            score += speed;
             player.playerMovement(null, null);
         }
         checkCollision();
         if (endGame()) {
             speed = 0f;
         }
-
     }
 
     public void scroll(float speed) {
@@ -81,12 +86,11 @@ public class Game {
             if (platform.getX() < player.getX() + player.getWidth() &&
                 player.getX() < platform.getX() + platform.getWidth() &&
                 player.getY() <= platform.getY() + platform.getHeight() &&
-                platform.getY() <= player.getY() &&
-                player.getUpwardsMomentum() <= 0) {
+                platform.getY() <= player.getY() && player.getUpwardsMomentum() <= 0) {
 
                     player.setUpwardsMomentum(jumpStrength);
-                    player.setSidewaysMomentum(sidewaysMotion);
-                    sidewaysMotion = 0f;
+                    player.setSidewaysMomentum(player.getSidewaysAccu());
+                    player.setSidewaysAccu(0);
             }
         }
 
@@ -100,10 +104,7 @@ public class Game {
     }
 
     public boolean endGame() {
-        if (player.getY() + player.getHeight() <= -1.1f) {
-            return true;
-        }
-        return false;
+        return player.getY() + player.getHeight() <= -1.1f;
     }
 }
 

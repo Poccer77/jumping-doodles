@@ -4,7 +4,16 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class Player {
 
-    private float x, y, width, height, upwardsMomentum, sidewaysMomentum;
+    private float x;
+    private float y;
+    private float width;
+    private float height;
+    private float upwardsMomentum;
+    private float sidewaysMomentum;
+
+
+
+    private float sidewaysAccu;
 
     public Player (float x, float y, float dimension) {
         this.x = x;
@@ -16,9 +25,13 @@ public class Player {
 
     public void draw(float XOffset, float YOffset) {
         glBegin(GL_QUADS);
+        glColor4f(255, 255, 255, 255);
         glVertex2f(x + XOffset, y + height + YOffset);
+        glColor4f(255, 255, 255, 255);
         glVertex2f(x + width + XOffset, y + height + YOffset);
+        glColor4f(255, 255, 255, 255);
         glVertex2f(x + width + XOffset, y + YOffset);
+        glColor4f(255, 255, 255, 255);
         glVertex2f(x + XOffset, y + YOffset);
         glEnd();
 
@@ -29,7 +42,7 @@ public class Player {
     public void playerMovement(Float sidewaysMomentumOverwrite, Float upwardsMomentumOverwrite) {
         draw((sidewaysMomentumOverwrite == null) ? sidewaysMomentum : sidewaysMomentumOverwrite,
              (upwardsMomentumOverwrite == null) ? upwardsMomentum : upwardsMomentumOverwrite);
-        upwardsMomentum = upwardsMomentum - 0.001f;
+        if (upwardsMomentum >= -0.1) upwardsMomentum = upwardsMomentum - 0.001f;
     }
 
     public float getX() {
@@ -63,4 +76,8 @@ public class Player {
     public float getSidewaysMomentum() {return sidewaysMomentum;}
 
     public void setSidewaysMomentum(float sidewaysMomentum) {this.sidewaysMomentum = sidewaysMomentum;}
+
+    public float getSidewaysAccu() {return sidewaysAccu;}
+
+    public void setSidewaysAccu(float sidewaysAccu) {this.sidewaysAccu = sidewaysAccu;}
 }
