@@ -30,7 +30,7 @@ public class Main {
         glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
 
         // Create the window
-        window = glfwCreateWindow(width, height, "Hello World!", 0, 0);
+        window = glfwCreateWindow(width, height, "0", 0, 0);
         if (window == 0)
             throw new RuntimeException("Failed to create the GLFW window");
 

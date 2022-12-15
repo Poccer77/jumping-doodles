@@ -6,6 +6,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 import Utilities.Tools;
 import org.lwjgl.opengl.GL;
+import org.lwjgl.stb.STBTruetype;
 
 public class Game {
 
@@ -60,6 +61,7 @@ public class Game {
             player.playerMovement(null, null);
         }
         checkCollision();
+        glfwSetWindowTitle(window, Float.toString((float)(Math.round(score * 100)) / 10));
         if (endGame()) {
             speed = 0f;
         }
