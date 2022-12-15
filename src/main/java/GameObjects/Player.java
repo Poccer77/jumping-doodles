@@ -1,5 +1,7 @@
 package GameObjects;
 
+import Utilities.Tools;
+
 import static org.lwjgl.opengl.GL11.*;
 
 public class Player {
@@ -24,15 +26,21 @@ public class Player {
     }
 
     public void draw(float XOffset, float YOffset) {
+
+        float colorFadeToRed = Tools.RangeToRangeMapping(Math.min(-getSidewaysAccu(), 0), -0.0205f, 0, 0, 1);
+        float colorFadeToBlue = Tools.RangeToRangeMapping(Math.min(getSidewaysAccu(), 0), -0.0205f, 0, 0, 1);
+        System.out.println("redfade: " + colorFadeToRed + ", " + "bluefade: " + colorFadeToBlue);
+
         glBegin(GL_QUADS);
-        glColor4f(255, 255, 255, 255);
+        glColor4f(colorFadeToBlue, colorFadeToBlue, 255, 0);
         glVertex2f(x + XOffset, y + height + YOffset);
-        glColor4f(255, 255, 255, 255);
+        glColor4f(255, colorFadeToRed, colorFadeToRed, 0);
         glVertex2f(x + width + XOffset, y + height + YOffset);
-        glColor4f(255, 255, 255, 255);
+        glColor4f(255, colorFadeToRed, colorFadeToRed, 0);
         glVertex2f(x + width + XOffset, y + YOffset);
-        glColor4f(255, 255, 255, 255);
+        glColor4f(colorFadeToBlue, colorFadeToBlue, 255, 0);
         glVertex2f(x + XOffset, y + YOffset);
+        glColor4f(255, 255, 255, 0);
         glEnd();
 
         x += XOffset;

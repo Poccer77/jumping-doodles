@@ -3,6 +3,8 @@ import GameObjects.Player;
 import java.util.ArrayList;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
+
+import Utilities.Tools;
 import org.lwjgl.opengl.GL;
 
 public class Game {
@@ -40,11 +42,13 @@ public class Game {
 
         int stateA = glfwGetKey(window, GLFW_KEY_A);
         int stateD = glfwGetKey(window, GLFW_KEY_D);
-        if (stateA == GLFW_PRESS) {
+        if (stateA == GLFW_PRESS && player.getSidewaysAccu() > -0.02) {
             player.setSidewaysAccu(player.getSidewaysAccu() - 0.0005f);
+            player.setSidewaysAccu((float)(Math.round(player.getSidewaysAccu() * 10000)) / 10000);
         }
-        if (stateD == GLFW_PRESS) {
+        if (stateD == GLFW_PRESS && player.getSidewaysAccu() < 0.02) {
             player.setSidewaysAccu(player.getSidewaysAccu() + 0.0005f);
+            player.setSidewaysAccu((float)(Math.round(player.getSidewaysAccu() * 10000)) / 10000);
         }
         if (player.getY() >= 0.5f && player.getUpwardsMomentum() >= 0) {
             this.scroll(player.getUpwardsMomentum());
