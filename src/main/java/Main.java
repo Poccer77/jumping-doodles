@@ -69,7 +69,7 @@ public class Main {
             int close = glfwGetKey(window, GLFW_KEY_ESCAPE);
             if (close == GLFW_PRESS) break;
             glfwSwapBuffers(window);
-            Thread.sleep(10);
+            Thread.sleep(1);
         }
     }
 
