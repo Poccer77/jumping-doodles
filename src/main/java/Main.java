@@ -1,6 +1,7 @@
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 
+import Utilities.Values;
 import org.lwjgl.opengl.GL;
 
 
@@ -52,7 +53,7 @@ public class Main {
         // creates the GLCapabilities instance and makes the OpenGL
         // bindings available for use.
 
-        Game game = new Game(window, 0.001f);
+        Game game = new Game(window, Values.GAME_SPEED.value);
 
         // Run the rendering loop until the user has attempted to close
         // the window or has pressed the ESCAPE key.

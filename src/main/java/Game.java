@@ -5,12 +5,13 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 
 import Utilities.Tools;
+import Utilities.Values;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.stb.STBTruetype;
 
 public class Game {
 
-    private long window;
+    private final long window;
     private ArrayList<Platform> platforms;
     private Player player;
     private float jumpStrength;
@@ -36,18 +37,18 @@ public class Game {
         }
         player = new Player(-0.025f, -0.8f, 0.05f);
         platforms = returnPlatforms;
-        jumpStrength = gap / 10f;
+        jumpStrength = Values.PLAYER_JUMP_STRENGTH.value;
     }
 
     public void loop() {
 
         int stateA = glfwGetKey(window, GLFW_KEY_A);
         int stateD = glfwGetKey(window, GLFW_KEY_D);
-        if (stateA == GLFW_PRESS && player.getSidewaysAccu() > -0.02) {
+        if (stateA == GLFW_PRESS && player.getSidewaysAccu() > -Values.PLAYER_HORIZONTAL_MAX_SPEED.value) {
             player.setSidewaysAccu(player.getSidewaysAccu() - 0.0005f);
             player.setSidewaysAccu((float)(Math.round(player.getSidewaysAccu() * 10000)) / 10000);
         }
-        if (stateD == GLFW_PRESS && player.getSidewaysAccu() < 0.02) {
+        if (stateD == GLFW_PRESS && player.getSidewaysAccu() < Values.PLAYER_HORIZONTAL_MAX_SPEED.value) {
             player.setSidewaysAccu(player.getSidewaysAccu() + 0.0005f);
             player.setSidewaysAccu((float)(Math.round(player.getSidewaysAccu() * 10000)) / 10000);
         }

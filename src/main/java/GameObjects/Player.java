@@ -1,6 +1,7 @@
 package GameObjects;
 
 import Utilities.Tools;
+import Utilities.Values;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -20,8 +21,8 @@ public class Player {
     public Player (float x, float y, float dimension) {
         this.x = x;
         this.y = y;
-        this.width = dimension;
-        this.height = dimension * 2;
+        this.width = Values.PLAYER_WIDTH.value;
+        this.height = Values.PLAYER_HEIGHT.value;
         draw(0, 0);
     }
 
