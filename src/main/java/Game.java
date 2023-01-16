@@ -18,6 +18,7 @@ public class Game {
     public float gap = 0.5f;
     public float speed;
     public float score = 0;
+    private float multiplier = 1;
     private float distanceToNextPlatform = 0;
 
     public Game(long window, float speed) {
@@ -61,7 +62,13 @@ public class Game {
             score += speed;
             player.playerMovement(null, null);
         }
-        checkCollision();
+
+        Platform platform = checkCollision();
+        if(platform != null && platform.isGivePoints()) {
+            scoreBonus(platform);
+        } else if (platform != null) {
+            multiplier = 1;
+        };
         glfwSetWindowTitle(window, Float.toString((float)(Math.round(score * 100)) / 10));
         if (endGame()) {
             speed = 0f;
@@ -87,7 +94,9 @@ public class Game {
         }
     }
 
-    public void checkCollision() {
+    public Platform checkCollision() {
+
+        Platform returnPlatform = null;
 
         for (Platform platform : platforms) {
             if (platform.getX() < player.getX() + player.getWidth() &&
@@ -95,6 +104,7 @@ public class Game {
                 player.getY() <= platform.getY() + platform.getHeight() &&
                 platform.getY() <= player.getY() && player.getUpwardsMomentum() <= 0) {
 
+                    returnPlatform = platform;
                     player.setUpwardsMomentum(jumpStrength);
                     player.setSidewaysMomentum(player.getSidewaysAccu());
                     player.setSidewaysAccu(0);
@@ -107,6 +117,17 @@ public class Game {
 
         if (player.getX() >= 1.01f) {
             player.setX(-1.0f - player.getWidth());
+        }
+
+        return returnPlatform;
+    }
+
+    public void scoreBonus(Platform platform) {
+        float bonus = 1.5f - Math.abs(Tools.RangeToRangeMapping(player.getX() + player.getWidth() / 2, platform.getX(), platform.getX() + platform.getWidth(), -1, 1));
+        platform.deactivate(bonus);
+        if (bonus >= 1) {
+            score += bonus * multiplier;
+            multiplier++;
         }
     }
 

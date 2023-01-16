@@ -8,8 +8,6 @@ import org.lwjgl.opengl.GL;
 public class Main {
     // The window handle
     private long window;
-    private int width = 1000;
-    private int height = 700;
     private float x;
 
     public void run() throws InterruptedException {
@@ -31,7 +29,9 @@ public class Main {
         glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
 
         // Create the window
-        window = glfwCreateWindow(width, height, "0", 0, 0);
+        int height = 700;
+        int width = 1000;
+        window = glfwCreateWindow(width, height, "Hello World!", 0, 0);
         if (window == 0)
             throw new RuntimeException("Failed to create the GLFW window");
 
@@ -70,7 +70,7 @@ public class Main {
             int close = glfwGetKey(window, GLFW_KEY_ESCAPE);
             if (close == GLFW_PRESS) break;
             glfwSwapBuffers(window);
-            Thread.sleep(1);
+            Thread.sleep(10);
         }
     }
 
